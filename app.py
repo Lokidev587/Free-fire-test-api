@@ -59,7 +59,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # ✅ Per-key rate limit setup
-KEY_LIMIT = 150
+KEY_LIMIT = 1000
 token_tracker = defaultdict(lambda: [0, time.time()])  # token: [count, last_reset_time]
 
 def get_today_midnight_timestamp():
@@ -173,7 +173,7 @@ def handle_requests():
     server_name = request.args.get("server_name", "").upper()
     key = request.args.get("key")
 
-    if key != "gst":
+    if key != "Ayano":
         return jsonify({"error": "Invalid or missing API key 🔑"}), 403
 
     if not uid or not server_name:
